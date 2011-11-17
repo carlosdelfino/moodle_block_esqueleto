@@ -22,9 +22,28 @@ class block_esqueleto extends block_base {
 
 		$this->content         =  new stdClass;
 		$this->content->text   = 'Exemplo de Texto no corpo do Bloco';
+		$this->content->text   .= '<br/>';
+
+		// texto inserido nas configurações
+		if (! empty($this->config->text)) {
+		$this->content->text   .= '<br/>';
+			$this->content->text .= 'Texto Configurado: ';
+			$this->content->text .= $this->config->text;
+		}
+		// texto inserido nas configurações
+		if (! empty($this->config->inteiro)) {
+		$this->content->text   .= '<br/>';
+			$this->content->text .= 'Valor Configurado: ';
+			$this->content->text .= $this->config->inteiro;
+		}
+
 		$this->content->footer = 'Aqui é o Rodapé';
 
 		return $this->content;
+	}
+
+	public function instance_allow_config() {
+		return true;
 	}
 }
 ?>
